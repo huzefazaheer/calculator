@@ -85,11 +85,15 @@ function addValue(noSelected) {
   //If it is operator then add operation
 
   if (operation == "none") {
-    no1 == 0 ? (no1 = noSelected) : (no1 = no1.toString() + noSelected);
-    resulttxt.innerHTML = no1.toString();
+    if ((noSelected == "." && no1.toString().includes(".")) == false) {
+      no1 == 0 ? (no1 = noSelected) : (no1 = no1.toString() + noSelected);
+      resulttxt.innerHTML = no1.toString();
+    }
   } else {
-    no2 == 0 ? (no2 = noSelected) : (no2 = no2.toString() + noSelected);
-    resulttxt.innerHTML = no2.toString();
+    if ((noSelected == "." && no2.toString().includes(".")) == false) {
+      no2 == 0 ? (no2 = noSelected) : (no2 = no2.toString() + noSelected);
+      resulttxt.innerHTML = no2.toString();
+    }
   }
   console.log(`no1 ${no1} ${operation} no2 ${no2}`);
 }
@@ -98,11 +102,10 @@ buttons.addEventListener("click", (e) => {
   clickedElement = e.target;
   textSelected = e.target.innerText;
   if (clickedElement.nodeName == "BUTTON") {
-    if (isNaN(Number(textSelected))) {
+    if (isNaN(Number(textSelected)) && textSelected != ".") {
       doSpecialFunction(textSelected);
     } else {
-      noSelected = Number(textSelected);
-      addValue(noSelected);
+      addValue(textSelected);
     }
   }
 });
