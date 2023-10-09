@@ -8,7 +8,6 @@ let rootStyle = getComputedStyle(document.querySelector(":root"));
 let result = 0;
 let no1 = 0;
 let no2 = 0;
-let selectionNo = 0;
 let operation = "none";
 
 function Operate() {
@@ -26,9 +25,9 @@ function Operate() {
       no2 != 0 ? (result = no1 / no2) : (result = "error");
       break;
   }
-  selectionNo = 0;
   resulttxt.innerText = result;
   no1 = result;
+  no2 = 0;
   operation = "none";
 }
 
@@ -36,6 +35,10 @@ function doSpecialFunction(textSelected) {
   switch (textSelected) {
     case "AC":
       resulttxt.innerHTML = "";
+      no1 = 0;
+      no2 = 0;
+      result = 0;
+      operation = "none";
       break;
     case "=":
       Operate();
@@ -73,9 +76,11 @@ function addValue(noSelected) {
   //If it is operator then add operation
 
   if (operation == "none") {
-    no1 = noSelected;
+    no1 == 0 ? (no1 = noSelected) : (no1 = no1.toString() + noSelected);
+    resulttxt.innerHTML = no1.toString();
   } else {
-    no2 = noSelected;
+    no2 == 0 ? (no2 = noSelected) : (no2 = no2.toString() + noSelected);
+    resulttxt.innerHTML = no2.toString();
   }
 
   console.log(`no1 ${no1} ${operation} no2 ${no2}`);
