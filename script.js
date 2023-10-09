@@ -42,6 +42,14 @@ function doSpecialFunction(textSelected) {
       result = 0;
       operation = "none";
       break;
+    case "DEL":
+      operation == "none"
+        ? (no1 = Number(no1.toString().slice(0, no1.toString().length - 1)))
+        : (no2 = Number(no2.toString().slice(0, no2.toString().length - 1)));
+      operation == "none"
+        ? (resulttxt.innerHTML = no1.toString())
+        : (resulttxt.innerHTML = no2.toString());
+      break;
     case "=":
       Operate();
       break;
@@ -90,7 +98,6 @@ buttons.addEventListener("click", (e) => {
   clickedElement = e.target;
   textSelected = e.target.innerText;
   if (clickedElement.nodeName == "BUTTON") {
-    resulttxt.innerText = textSelected;
     if (isNaN(Number(textSelected))) {
       doSpecialFunction(textSelected);
     } else {
