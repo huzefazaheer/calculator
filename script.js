@@ -2,6 +2,7 @@ const root = document.querySelector(":root");
 const resulttxt = document.querySelector(".result");
 const buttons = document.querySelector(".calcbtns");
 const changecolorbtn = document.querySelector(".changecolor");
+const debugtxt = document.querySelector(".debug");
 let rootStyle = getComputedStyle(document.querySelector(":root"));
 
 let result = 0;
@@ -10,7 +11,7 @@ let no2 = 0;
 let selectionNo = 0;
 let operation = "none";
 
-function Operate(no1, no2, operation) {
+function Operate() {
   switch (operation) {
     case "add":
       result = no1 + no2;
@@ -23,6 +24,7 @@ function Operate(no1, no2, operation) {
       break;
     case "div":
       no2 != 0 ? (result = no1 / no2) : (result = "error");
+      break;
   }
   selectionNo = 0;
   resulttxt.innerText = result;
@@ -36,7 +38,7 @@ function doSpecialFunction(textSelected) {
       resulttxt.innerHTML = "";
       break;
     case "=":
-      Operate(no1, no2, operation);
+      Operate();
       break;
     case "Ans":
       no1 = result;
@@ -45,6 +47,7 @@ function doSpecialFunction(textSelected) {
       break;
     case "+":
       operation = "add";
+
       break;
     case "-":
       operation = "sub";
@@ -61,13 +64,21 @@ function doSpecialFunction(textSelected) {
 }
 
 function addValue(noSelected) {
-  selectionNo == 0 ? (no1 = noSelected) : (no2 = noSelected);
-  console.log(selectionNo + ":" + no1 + "   " + operation + " " + no2);
-  selectionNo++;
+  // selectionNo == 0 ? (no1 = noSelected) : (no2 = noSelected);
+  // console.log(selectionNo + ":" + no1 + "   " + operation + " " + no2);
+  // selectionNo++;
 
   //If it is first number then add value to no1
   //If it is second number then add value to no2
   //If it is operator then add operation
+
+  if (operation == "none") {
+    no1 = noSelected;
+  } else {
+    no2 = noSelected;
+  }
+
+  console.log(`no1 ${no1} ${operation} no2 ${no2}`);
 }
 
 buttons.addEventListener("click", (e) => {
