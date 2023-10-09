@@ -50,6 +50,7 @@ button {
   background: #8f8c8c;
   color: white;
   box-shadow: 0 2px #999;
+  font-weight: normal;
 }
 
 button:hover {
@@ -77,5 +78,6 @@ button.green:active {
   margin-right: 5px;
   font-size: 4em;
   text-align: right;
-  font-family: "Digital-7 V7";
+  font-family: "Digital-7 V7", sans-serif;
+  font-weight: bold;
 }
