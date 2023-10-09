@@ -11,6 +11,8 @@ let no2 = 0;
 let operation = "none";
 
 function Operate() {
+  no1 = Number(no1);
+  no2 = Number(no2);
   switch (operation) {
     case "add":
       result = no1 + no2;
@@ -50,7 +52,6 @@ function doSpecialFunction(textSelected) {
       break;
     case "+":
       operation = "add";
-
       break;
     case "-":
       operation = "sub";
@@ -82,7 +83,6 @@ function addValue(noSelected) {
     no2 == 0 ? (no2 = noSelected) : (no2 = no2.toString() + noSelected);
     resulttxt.innerHTML = no2.toString();
   }
-
   console.log(`no1 ${no1} ${operation} no2 ${no2}`);
 }
 
